@@ -2,7 +2,7 @@ import MySQL
 
 class DB {
 
-  let host = "localhost"
+  let host = "127.0.0.1"
   let user = "root"
   let password = ""
   let db = "todo_perfect"
@@ -11,7 +11,7 @@ class DB {
 
   func updateData() {}
 
-  func fetchData() {
+  func fetchData() -> [[String: Any]]? {
   
     let mysql = MySQL() // Create an instance of MySQL to work with
          
@@ -20,7 +20,7 @@ class DB {
     guard connected else {
         // verify we connected successfully
         print(mysql.errorMessage())
-        return
+        return nil
     }
          
     defer {
@@ -32,11 +32,21 @@ class DB {
     
     // make sure the query worked
     guard querySuccess else {
-        return
+        return nil
     }
 
-    print(querySuccess)
-           
-    
+    let results = mysql.storeResults()!
+    var resultArray = [[String:Any]]()
+
+    while let row = results.next() {
+        var item = [String: Any]()
+        item["id"] = row[0]
+        item["task"] = row[1]
+        let status = row[2] == "1" ? "checked" : ""
+        item["status"] = status
+        resultArray.append(item)
+
+    }
+    return resultArray
   }
 }

@@ -3,10 +3,13 @@ import PerfectHTTP
 import PerfectMustache
 
 struct IndexHandler: MustachePageHandler{
+  var dbHandler = DB()
 
   func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
     var values = MustacheEvaluationContext.MapType()
     values["title"] = "Perfect Todo Example"
+    values["tasks"] = dbHandler.fetchData()
+    print(values["tasks"])
     contxt.extendValues(with: values)
     do {
   			try contxt.requestCompleted(withCollector: collector)

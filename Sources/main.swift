@@ -74,7 +74,7 @@ server.serverPort = 8181
 
 // Set a document root.
 // This is optional. If you do not want to serve static content then do not set this.
-// Setting the document root will automatically add a static file handler for the route /**
+// Setting the document root will automatically add a static file handler for the route 
 server.documentRoot = "./webroot"
 
 do {

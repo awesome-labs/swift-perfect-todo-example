@@ -19,8 +19,9 @@
     </div>
     <div id="task_list">
     <ul>
-      <li><input type="checkbox" name="done"/><span>Task name app{{task-name}}</span></li>
-      <li><input type="checkbox" name="done"/><span>Task name app{{task-name}}</span></li>
+    {{ #tasks }}
+       <li><input type="checkbox" name="done" {{status}} /><span>{{ task }}</span></li>
+    {{ /tasks }}
     </ul>
   </div>
     <footer><a href="http://perfect.org">Perfect.org</a></footer>
