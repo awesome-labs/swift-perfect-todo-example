@@ -24,8 +24,23 @@ class DB {
     return mysql.query(statement: "INSERT INTO \(self.table) (task, status) VALUES ('\(task)', \(status))")
   }
 
-  func updateData(id: Int) -> Bool {
-    return false
+  func updateData(id: String?, status: Int) -> Bool {
+
+    guard let taskId = id else {
+      return false
+    }
+
+    let mysql = MySQL()
+    let connected = mysql.connect(host: self.host, user: self.user, password: self.password, db: self.db)
+    guard connected else {
+        print(mysql.errorMessage())
+        return false
+    }
+
+    defer {
+        mysql.close()
+    }
+    return mysql.query(statement: "UPDATE \(self.table) SET status=\(status) WHERE id=\(taskId)")
   }
 
   func fetchData() -> [[String: Any]]? {

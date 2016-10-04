@@ -2,14 +2,13 @@ import PerfectLib
 import PerfectHTTP
 import PerfectMustache
 
-var dbHandler = DB()
+
 
 struct IndexHandler: MustachePageHandler{
 
-
   func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
+    let dbHandler = DB()
     var values = MustacheEvaluationContext.MapType()
-    values["title"] = "Perfect Todo Example"
     values["tasks"] = dbHandler.fetchData()
     contxt.extendValues(with: values)
     do {
@@ -26,15 +25,14 @@ struct IndexHandler: MustachePageHandler{
 struct NewTaskHandler: MustachePageHandler{
 
   func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
-    var values = MustacheEvaluationContext.MapType()
-    values["title"] = "Perfect Todo Example"
-    values["added"] = "Task added!"
-    values["tasks"] = dbHandler.fetchData()
+    let dbHandler = DB()
     let request = contxt.webRequest
+    var values = MustacheEvaluationContext.MapType()
     if let taskName = request.param(name: "task_name"){
       values["task-name"] = taskName
       let _ = dbHandler.insertData(task: taskName)
     }
+    values["tasks"] = dbHandler.fetchData()
     contxt.extendValues(with: values)
     do {
   			try contxt.requestCompleted(withCollector: collector)
@@ -50,13 +48,16 @@ struct NewTaskHandler: MustachePageHandler{
 struct TaskDoneHandler: MustachePageHandler{
 
   func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
-    var values = MustacheEvaluationContext.MapType()
-    values["title"] = "Perfect Todo Example"
-    values["added"] = "Task added!"
+    let dbHandler = DB()
     let request = contxt.webRequest
-    if let taskName = request.param(name: "task_name"){
-      values["task-name"] = taskName
+    let taskId = request.param(name: "id")
+    var taskStatus: Int?
+    if let status = request.param(name: "status") {
+      taskStatus = Int(status)
     }
+    let _ = dbHandler.updateData(id: taskId, status: taskStatus!)
+    var values = MustacheEvaluationContext.MapType()
+    values["tasks"] = dbHandler.fetchData()
     contxt.extendValues(with: values)
     do {
   			try contxt.requestCompleted(withCollector: collector)
