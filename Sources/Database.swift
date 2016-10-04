@@ -9,49 +9,39 @@ class DB {
   let table = "todo"
 
   func insertData(task: String) -> Bool {
-  
+
     let status = 0
-    let mysql = MySQL() // Create an instance of MySQL to work with
-         
+    let mysql = MySQL()
     let connected = mysql.connect(host: self.host, user: self.user, password: self.password, db: self.db)
-         
     guard connected else {
-        // verify we connected successfully
         print(mysql.errorMessage())
         return false
     }
-         
+
     defer {
-        mysql.close() //This defer block makes sure we terminate the connection once finished, regardless of the result
+        mysql.close()
     }
-             
-     // Run the Query (for example all rows in an options table)
-    print("INSERT INTO \(self.table) (task, status) VALUES ('\(task)', \(status))")
     return mysql.query(statement: "INSERT INTO \(self.table) (task, status) VALUES ('\(task)', \(status))")
   }
 
-  func updateData() {}
+  func updateData(id: Int) -> Bool {
+    return false
+  }
 
   func fetchData() -> [[String: Any]]? {
-  
-    let mysql = MySQL() // Create an instance of MySQL to work with
-         
+
+    let mysql = MySQL()
     let connected = mysql.connect(host: self.host, user: self.user, password: self.password, db: self.db)
-         
     guard connected else {
-        // verify we connected successfully
         print(mysql.errorMessage())
         return nil
     }
-         
+
     defer {
-        mysql.close() //This defer block makes sure we terminate the connection once finished, regardless of the result
+        mysql.close()
     }
-             
-     // Run the Query (for example all rows in an options table)
-    let querySuccess = mysql.query(statement: "SELECT  * FROM todo")
-    
-    // make sure the query worked
+
+    let querySuccess = mysql.query(statement: "SELECT  * FROM todo ORDER BY id DESC LIMIT 10")
     guard querySuccess else {
         return nil
     }
@@ -63,10 +53,8 @@ class DB {
         var item = [String: Any]()
         item["id"] = row[0]
         item["task"] = row[1]
-        let status = row[2] == "1" ? "checked" : ""
-        item["status"] = status
+        item["status"] = row[2] == "1" ? "checked" : ""
         resultArray.append(item)
-
     }
     return resultArray
   }

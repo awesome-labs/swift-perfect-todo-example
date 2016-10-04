@@ -3,27 +3,32 @@
     <meta charset="utf-8">
     <title>{{title}}</title>
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
-    <header>
-      <h1> Perfect Todo Sample </h1>
-    </header>
-    <div id="new">
-      <form id="create-task" action="/" method="post">
-        <input type="text" placeholder="task title" name="task_name"/>
-        <input type="submit" title="Add new task"/>
-      </form>
-    </div>
-    <div id="task_list">
-    <ul>
-    {{ #tasks }}
-       <li><input type="checkbox" name="done" {{status}} /><span>{{ task }}</span></li>
-    {{ /tasks }}
-    </ul>
-  </div>
+    <section class="todoapp">
+      <header class="header">
+        <h1> Perfect Todo Example </h1>
+        <form class="new-task" action="/" method="post">
+          <input type="text" class="new-todo" autofocus placeholder="task title" name="task_name"/>
+          <!-- <button class="add" title="Add new task"></button> -->
+          <button class="add" (click)="addItem()">Add</button>
+        </form>
+      </header>
+      <section class="main">
+        <ul class="todo-list">
+          {{ #tasks }}
+             <li class="item.completed">
+                <div class="view">
+                  <input type="checkbox" class="toggle" name="done" {{status}} />
+                  <label>{{ task }}</label>
+                </div>
+              </li>
+          {{ /tasks }}
+        </ul>
+      </section>
+    </section>
     <footer><a href="http://perfect.org">Perfect.org</a></footer>
   </body>
 </html>

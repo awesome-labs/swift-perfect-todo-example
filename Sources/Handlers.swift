@@ -2,8 +2,10 @@ import PerfectLib
 import PerfectHTTP
 import PerfectMustache
 
+var dbHandler = DB()
+
 struct IndexHandler: MustachePageHandler{
-  var dbHandler = DB()
+
 
   func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
     var values = MustacheEvaluationContext.MapType()
@@ -19,12 +21,10 @@ struct IndexHandler: MustachePageHandler{
   			response.completed()
   	}
   }
-
 }
 
 struct NewTaskHandler: MustachePageHandler{
 
-  var dbHandler = DB()
   func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
     var values = MustacheEvaluationContext.MapType()
     values["title"] = "Perfect Todo Example"
