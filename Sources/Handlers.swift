@@ -9,7 +9,6 @@ struct IndexHandler: MustachePageHandler{
     var values = MustacheEvaluationContext.MapType()
     values["title"] = "Perfect Todo Example"
     values["tasks"] = dbHandler.fetchData()
-    print(values["tasks"])
     contxt.extendValues(with: values)
     do {
   			try contxt.requestCompleted(withCollector: collector)
@@ -25,13 +24,16 @@ struct IndexHandler: MustachePageHandler{
 
 struct NewTaskHandler: MustachePageHandler{
 
+  var dbHandler = DB()
   func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
     var values = MustacheEvaluationContext.MapType()
     values["title"] = "Perfect Todo Example"
     values["added"] = "Task added!"
+    values["tasks"] = dbHandler.fetchData()
     let request = contxt.webRequest
     if let taskName = request.param(name: "task_name"){
       values["task-name"] = taskName
+      let _ = dbHandler.insertData(task: taskName)
     }
     contxt.extendValues(with: values)
     do {

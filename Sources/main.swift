@@ -28,7 +28,7 @@ routes.add(method: .get, uri: "/", handler: {
 )
 
 // Adding a route to handle the root list
-routes.add(method: .post, uri: "/new", handler: {
+routes.add(method: .post, uri: "/", handler: {
 	request, response in
 
 	// Setting the response content type explicitly to text/html
