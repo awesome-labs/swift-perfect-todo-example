@@ -8,8 +8,6 @@ struct IndexHandler: MustachePageHandler{
 
   func extendValuesForResponse(context contxt: MustacheWebEvaluationContext, collector: MustacheEvaluationOutputCollector) {
     let dbHandler = DB()
-    print(dbHandler)
-    print(dbHandler.connected)
     var values = MustacheEvaluationContext.MapType()
     values["tasks"] = dbHandler.fetchData()
     contxt.extendValues(with: values)
