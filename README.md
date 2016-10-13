@@ -2,6 +2,7 @@
 
 <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
 <img src="https://img.shields.io/badge/Platforms-OS%20X%20%7C%20Linux%20-lightgray.svg?style=flat" alt="Platforms OS X | Linux">
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 <img src="https://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat" alt="License MIT">
 
 ![](screenshot.png)
