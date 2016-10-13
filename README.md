@@ -9,6 +9,22 @@
 
 ![](screenshot.png)
 
-A simple todo list written with Perfect.
+A simple todo list written with Swift [Perfect](http://perfect.org).
 
 This example illustrates how to create a simple todo list with Swift Perfect, persisting data on MySQL database.
+
+## Installation
+
+You should use [swiftenv](https://github.com/kylef/swiftenv).
+
+Swift version: `DEVELOPMENT-SNAPSHOT-2016-09-05-a`
+
+`swiftenv install`
+
+To run local project:
+
+`make run`
+
+## License
+
+[MIT License](http://vsouza.mit-license.org/) © Vinicius Souza
