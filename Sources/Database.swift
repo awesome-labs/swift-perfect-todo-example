@@ -2,9 +2,9 @@ import MySQL
 
 class DB {
   var mysql = MySQL()
-  let host = "127.0.0.1"
-  let user = "root"
-  let password = ""
+  let host = "aa1cv4ie6p80k46.colvlav7ekem.us-east-1.rds.amazonaws.com"
+  let user = "perfect"
+  let password = "010203**04"
   let db = "todo_perfect"
   let table = "todo"
   var connected = false
