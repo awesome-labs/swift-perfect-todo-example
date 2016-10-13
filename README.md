@@ -2,14 +2,15 @@
 
 <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
 <img src="https://img.shields.io/badge/Platforms-OS%20X%20%7C%20Linux%20-lightgray.svg?style=flat" alt="Platforms OS X | Linux">
-<img src="https://img.shields.io/badge/License-Apache-lightgrey.svg?style=flat" alt="License Apache">
-<img src="https://img.shields.io/badge/Twitter-@PerfectlySoft-blue.svg?style=flat" alt="vsouza Twitter">
+<img src="https://img.shields.io/badge/License-MIT-lightgrey.svg?style=flat" alt="License MIT">
 
 ![](screenshot.png)
 
 A simple todo list written with Swift [Perfect](http://perfect.org).
 
 This example illustrates how to create a simple todo list with Swift Perfect, persisting data on MySQL database.
+
+Check out the [live demo](http://bit.ly/2ebnw8T) running on AWS ElasticBeanstalk.
 
 ## Installation
 
