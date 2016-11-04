@@ -15,15 +15,7 @@ Check out the [live demo](http://bit.ly/2ebnw8T) running on AWS ElasticBeanstalk
 
 ## Installation
 
-You should use [swiftenv](https://github.com/kylef/swiftenv).
-
-Swift version: `DEVELOPMENT-SNAPSHOT-2016-09-05-a`
-
-`swiftenv install`
-
-To run local project:
-
-`make run`
+It's recommended to use Swift 3.0.1
 
 then setup your MySQL credentials on `Sources/Database.swift`
 
@@ -36,7 +28,13 @@ then setup your MySQL credentials on `Sources/Database.swift`
   let table = "todo"
 ```
 
-so, just run:
+
+`database.sql` file has instructions to create database and tables with sample data:
+
+example: `mysql -u yourusername -p yourpassword yourdatabase
+< database.sql `
+
+after all, just run:
 
 `make run`
 
